@@ -2,16 +2,14 @@
 
 A bot that monitors for changes in Gnars auction state and notifies everyone via Twitter and Discord.
 
+## ENV file
+
+Copy and paste .env file to root folder.
+
 ## Install dependencies
 
 ```sh
-yarn
-```
-
-## Start Redis
-
-```sh
-docker-compose up -d
+yarn add
 ```
 
 ## Start bots
