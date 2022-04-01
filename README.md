@@ -17,3 +17,11 @@ yarn add
 ```sh
 yarn start
 ```
+
+```sh
+ps aux | grep index.ts
+```
+
+```sh
+yarn start 1> bot.log
+```
