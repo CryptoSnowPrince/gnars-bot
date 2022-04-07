@@ -1,7 +1,6 @@
 import Web3 from "web3";
 import config from "./config";
 const SkateABI = require("./abis/SkateContract");
-const SkateSettleABI = require("./abis/SkateSettleContract");
 
 import { internalDiscordWebhook } from "./clients";
 import { IAuctionLifecycleHandler, AuctionBids } from "./types";
@@ -10,23 +9,14 @@ import { DiscordAuctionLifecycleHandler } from "./handlers/discord";
 import {
   getNounPngBuffer,
 } from "./utils";
-// import { ethers } from "ethers";
 
-// const provider = new ethers.providers.EtherscanProvider("homestead", config.eth_api_key);
-// const web3Provider = new Web3(provider, config.RpcURL.wss[config.chainID])
 // @ts-ignore
-// const web3WSS = new Web3(config.RpcURL.wss[config.chainID], );
 const web3WSS = new Web3(config.RpcURL.wss[config.chainID]);
 const SkateContract = new web3WSS.eth.Contract(
   SkateABI,
   // @ts-ignore
   config.SkateContract[config.chainID]
 );
-// const SkateSettleContract = new web3WSS.eth.Contract(
-//   SkateSettleABI,
-//   //@ts-ignore
-//   config.SkateSettleContract[config.chainID]
-// );
 
 let auctionBid: AuctionBids = {
   id: 0,
