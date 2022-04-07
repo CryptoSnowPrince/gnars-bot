@@ -57,7 +57,7 @@ export async function formatSettledMessageText(
 
 export async function formatEndingSoonMessageText(id: number, restBN: number) {
   // return `Auction of Gnars ${id} is ending soon! Don't miss chance and please bid!`;
-  return `Last chance to bid on Gnar ${id}... don't miss out @sniper!`;
+  return `Last chance to bid on Gnar ${id}... don't miss out <@&958234550209773619>!`;
 }
 
 /**
