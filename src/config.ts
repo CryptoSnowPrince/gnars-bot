@@ -4,7 +4,7 @@ dotenv.config();
 
 const config = {
   SkateContract: {
-    1: "0x494715B2a3C75DaDd24929835B658a1c19bd4552",
+    1: "0xC28e0d3c00296dD8c5C3F2E9707361920f92a209", // old 0x494715B2a3C75DaDd24929835B658a1c19bd4552
   },
   SkateSettleContract: {
     1: "0x465a677f7BA1D804B092065e2464d86D0790071b",
@@ -13,8 +13,10 @@ const config = {
     AuctionCreated: "AuctionCreated",
     AuctionBid: "AuctionBid",
     AuctionSettled: "AuctionSettled",
-    MinBidIncrementPercentageUpdated: "MinBidIncrementPercentageUpdated",
-    ReservePriceUpdated: "ReservePriceUpdated",
+    // MinBidIncrementPercentageUpdated: "MinBidIncrementPercentageUpdated",
+    MinBidIncrementPercentageUpdated: "AuctionMinBidIncrementPercentageUpdated",
+    // ReservePriceUpdated: "ReservePriceUpdated",
+    ReservePriceUpdated: "AuctionReservePriceUpdated",
   },
   BlockExplorerURL: {
     1: "https://etherscan.io",

@@ -7,6 +7,8 @@ import {
 } from "../utils";
 import { AuctionSettled, Bid, IAuctionLifecycleHandler } from "../types";
 
+import config from "../config";
+
 export class DiscordAuctionLifecycleHandler
   implements IAuctionLifecycleHandler {
   constructor(public readonly discordClients: Discord.WebhookClient[]) { }
@@ -71,12 +73,26 @@ export class DiscordAuctionLifecycleHandler
 
   async handleAuctionEndingSoon(auctionId: number, restBN: number) {
     try {
-      const message = new Discord.MessageEmbed()
+      const png = await getNounPngBuffer(auctionId.toString());
+      if (png) {
+        const attachmentName = `Auction-${auctionId}.png`;
+        const attachment = new Discord.MessageAttachment(png, attachmentName);
+        const message = new Discord.MessageEmbed()
         .setTitle(`Auction Ending Soon`)
         .setURL("https://gnars.wtf/")
-        .setDescription(await formatEndingSoonMessageText(auctionId, restBN));
+        .setDescription(await formatEndingSoonMessageText(auctionId, restBN))
+        .attachFiles([attachment])
+        .setImage(`attachment://${attachmentName}`);
       // .setTimestamp();
-      await Promise.all(this.discordClients.map((c) => c.send(message)));
+      await Promise.all(this.discordClients.map((c) => c.send(`<@&${config.SNIPER_ROLE}>`, message)));
+      } else {
+        const message = new Discord.MessageEmbed()
+          .setTitle(`Auction Ending Soon`)
+          .setURL("https://gnars.wtf/")
+          .setDescription(await formatEndingSoonMessageText(auctionId, restBN));
+        // .setTimestamp();
+        await Promise.all(this.discordClients.map((c) => c.send(`<@&${config.SNIPER_ROLE}>`, message)));
+      }
       console.log(`processed discord auction ending soon ${auctionId}`)
     } catch (error) {
       console.log(error);

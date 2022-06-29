@@ -103,7 +103,7 @@ async function processAuctionTick() {
         auction.gnarId == lastGnarID &&
         auction.startBlock < lastBN &&
         auction.endBlock > lastBN &&
-        auction.endBlock - lastBN < 42
+        auction.endBlock - lastBN < 45
       ) {
         if (endingSoonFlag == true) {
           endingSoonFlag = false;
@@ -112,7 +112,7 @@ async function processAuctionTick() {
               h.handleAuctionEndingSoon(auction.gnarId, auction.endBlock - lastBN)
             )
           );
-          console.log(`     Auction ending soon: gnarID: ${auction.gnarId}`);
+          console.log(`Auction ending soon: gnarID: ${auction.gnarId}`);
         }
       }
 
